@@ -203,8 +203,9 @@ onMounted(() => loadFiles('.'));
 </template>
 
 <style scoped>
+/* 固定尺寸用大写 PX 豁免 postcss-pxtorem 转换:布局约束/控件尺寸保持物理像素,不随根字号缩放 */
 .browser {
-  max-width: 960px;
+  max-width: 960PX;
   margin: 0 auto;
   min-height: 100vh;
   min-height: 100dvh;
@@ -286,13 +287,13 @@ onMounted(() => loadFiles('.'));
 .file-row__checkbox {
   display: flex;
   align-items: center;
-  width: 18px;
+  width: 18PX;
   flex-shrink: 0;
 }
 
 .file-row__check {
-  width: 16px;
-  height: 16px;
+  width: 16PX;
+  height: 16PX;
   cursor: pointer;
   accent-color: var(--fs-primary);
 }
@@ -319,12 +320,12 @@ onMounted(() => loadFiles('.'));
   flex-shrink: 0;
   color: var(--fs-text-secondary);
   font-size: 12px;
-  min-width: 72px;
+  min-width: 72PX;
   text-align: right;
 }
 
 .file-row__meta--time {
-  min-width: 130px;
+  min-width: 130PX;
 }
 
 .file-list__empty {
@@ -389,7 +390,7 @@ onMounted(() => loadFiles('.'));
   }
 
   .file-row__meta {
-    min-width: 56px;
+    min-width: 56PX;
     font-size: 11px;
   }
 

@@ -4,7 +4,7 @@ import vue from '@vitejs/plugin-vue';
 import Components from 'unplugin-vue-components/vite';
 import AutoImport from 'unplugin-auto-import/vite';
 import { VantResolver } from '@vant/auto-import-resolver';
-import postcssPxToViewport from 'postcss-px-to-viewport';
+import postcssPxtorem from 'postcss-pxtorem';
 import { view } from 'vite-plugin-view';
 import vitePluginFastify from './vite-plugins/vite-plugin-fastify.ts';
 import { createServer } from './src/server/index.ts';
@@ -44,14 +44,34 @@ export default defineConfig(({ mode }) => {
     css: {
       postcss: {
         plugins: [
-          // 移动端适配:按 Vant 官方推荐将 px 转 vw,375 设计稿基准
-          postcssPxToViewport({
-            viewportWidth: 375,
+          // 移动端适配:px 转 rem,1rem = 16px 基准(html 根字号 clamp 封顶,桌面端最大 1.5x)
+          // 排除:border 系列(保护 Vant 1px hairline 细线)、定位偏移、CSS 变量(阴影等保持物理值)
+          postcssPxtorem({
+            rootValue: 16,
             unitPrecision: 5,
-            viewportUnit: 'vw',
-            selectorBlackList: [],
-            minPixelValue: 1,
+            propList: [
+              '*',
+              '!--*',
+              '!border',
+              '!border-width',
+              '!border-style',
+              '!border-color',
+              '!border-top',
+              '!border-right',
+              '!border-bottom',
+              '!border-left',
+              '!top',
+              '!right',
+              '!bottom',
+              '!left',
+              '!z-index',
+              '!flex-basis',
+            ],
+            // 排除 html 根字号规则本身,防止 font-size 转 rem 形成循环依赖
+            selectorBlackList: [/^html$/],
+            // 媒体查询条件(max-width: 640px)保持物理像素
             mediaQuery: false,
+            minPixelValue: 1,
           }),
         ],
       },

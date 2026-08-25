@@ -42,6 +42,12 @@
   box-sizing: border-box;
 }
 
+html {
+  /* rem 根字号:375px 视口下 1rem = 16px(与设计稿 1:1),随视口线性放大,562px 以上封顶 24px(1.5x)。
+     本规则经 postcss-pxtorem 的 selectorBlackList(/^html$/) 豁免转换,避免 rem 循环依赖 */
+  font-size: clamp(16px, calc(100vw / 375 * 16px), 24px);
+}
+
 html,
 body {
   height: 100%;

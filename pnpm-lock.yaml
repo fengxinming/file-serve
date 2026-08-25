@@ -60,6 +60,9 @@ importers:
       '@types/node':
         specifier: ^24.13.3
         version: 24.13.3
+      '@types/postcss-pxtorem':
+        specifier: ^6.1.0
+        version: 6.1.0
       '@types/pug':
         specifier: ^2.0.10
         version: 2.0.10
@@ -84,9 +87,9 @@ importers:
       oxlint:
         specifier: ^1.78.0
         version: 1.79.0
-      postcss-px-to-viewport:
-        specifier: ^1.0.0
-        version: 1.1.1
+      postcss-pxtorem:
+        specifier: ^6.1.0
+        version: 6.1.0(postcss@8.5.26)
       tinyglobby:
         specifier: ^0.2.17
         version: 0.2.17
@@ -780,6 +783,9 @@ packages:
 
   '@types/node@24.13.3':
     resolution: {integrity: sha512-Dh8vAsV36ig5wa9OX4pXvMc9D3Veibfw2wix0CUwYODLD8nkj9UsLjASr49nPg+2eKzxhBV+v7L8pXvT4e639Q==}
+
+  '@types/postcss-pxtorem@6.1.0':
+    resolution: {integrity: sha512-kHsYTjQgllOfhi3J+xunjMKUZ3APARV/JYeOOcIVLhvPVS162S8Ir8LsZwioFFyYCSnQp+aisupiSaRWVwKyDA==}
 
   '@types/pug@2.0.10':
     resolution: {integrity: sha512-Sk/uYFOBAB7mb74XcpizmH0KOR2Pv3D2Hmrh1Dmy5BmK3MpdSa5kqZcg6EKBdklU0bFXX9gCfzvpnyUehrPIuA==}
@@ -1946,8 +1952,10 @@ packages:
   pkg-types@2.3.1:
     resolution: {integrity: sha512-y+ichcgc2LrADuhLNAx8DFjVfgz91pRxfZdI3UDhxHvcVEZsenLO+7XaU5vOp0u/7V/wZ+plyuQxtrDlZJ+yeg==}
 
-  postcss-px-to-viewport@1.1.1:
-    resolution: {integrity: sha512-2x9oGnBms+e0cYtBJOZdlwrFg/mLR4P1g2IFu7jYKvnqnH/HLhoKyareW2Q/x4sg0BgklHlP1qeWo2oCyPm8FQ==}
+  postcss-pxtorem@6.1.0:
+    resolution: {integrity: sha512-ROODSNci9ADal3zUcPHOF/K83TiCgNSPXQFSbwyPHNV8ioHIE4SaC+FPOufd8jsr5jV2uIz29v1Uqy1c4ov42g==}
+    peerDependencies:
+      postcss: ^8.0.0
 
   postcss@8.5.26:
     resolution: {integrity: sha512-u82N74LFzG8ca+dD8puPnplTXoGH4fTPpVGuIbt36G3qvNlkvfD0lEAZSxaly3KX8TS/L1A1gsCEmvKmBcVbkQ==}
@@ -2971,6 +2979,10 @@ snapshots:
   '@types/node@24.13.3':
     dependencies:
       undici-types: 7.18.2
+
+  '@types/postcss-pxtorem@6.1.0':
+    dependencies:
+      postcss: 8.5.26
 
   '@types/pug@2.0.10': {}
 
@@ -4022,9 +4034,8 @@ snapshots:
       exsolve: 1.1.1
       pathe: 2.0.3
 
-  postcss-px-to-viewport@1.1.1:
+  postcss-pxtorem@6.1.0(postcss@8.5.26):
     dependencies:
-      object-assign: 4.1.1
       postcss: 8.5.26
 
   postcss@8.5.26:

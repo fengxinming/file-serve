@@ -335,25 +335,15 @@ function onSecondaryAction(task: UploadTask) {
 </script>
 
 <template>
-  <van-popup
-    v-model:show="visible"
-    position="right"
-    :style="{ width: '100%', height: '100%' }"
-    @click-overlay="onOverlayClick"
-  >
+  <van-popup v-model:show="visible" position="right" :style="{ width: '100%', height: '100%' }"
+    @click-overlay="onOverlayClick">
     <div class="upload-panel">
       <div class="upload-panel__header">
         <span class="upload-panel__title">{{ t('upload.title') }}</span>
         <span class="upload-panel__close" @click="onCloseClick">✕</span>
       </div>
 
-      <input
-        ref="fileInput"
-        type="file"
-        multiple
-        class="upload-panel__file-input"
-        @change="onFilesSelected"
-      />
+      <input ref="fileInput" type="file" multiple class="upload-panel__file-input" @change="onFilesSelected" />
 
       <div class="upload-panel__list">
         <div v-if="tasks.length === 0" class="upload-panel__empty">
@@ -369,20 +359,13 @@ function onSecondaryAction(task: UploadTask) {
               {{ statusText(task) }}
             </span>
             <div class="upload-task__progress">
-              <van-progress
-                v-if="task.status !== 'error'"
-                :percentage="task.progress"
-                :color="task.status === 'completed' ? '#26bf26' : undefined"
-              />
+              <van-progress v-if="task.status !== 'error'" :percentage="task.progress"
+                :color="task.status === 'completed' ? '#26bf26' : undefined" />
               <span v-else class="upload-task__error" :title="task.error">{{ task.error }}</span>
             </div>
             <div class="upload-task__actions">
-              <van-button
-                size="mini"
-                type="primary"
-                :disabled="task.status === 'completed'"
-                @click="onPrimaryAction(task)"
-              >
+              <van-button size="mini" type="primary" :disabled="task.status === 'completed'"
+                @click="onPrimaryAction(task)">
                 {{ primaryActionText(task) }}
               </van-button>
               <van-button size="mini" plain @click="onSecondaryAction(task)">{{
@@ -396,13 +379,7 @@ function onSecondaryAction(task: UploadTask) {
       <div class="upload-panel__toolbar">
         <label class="upload-panel__concurrency">
           <span>{{ t('upload.concurrency') }}</span>
-          <input
-            v-model.number="concurrency"
-            type="number"
-            min="1"
-            step="1"
-            class="upload-panel__num"
-          />
+          <input v-model.number="concurrency" type="number" min="1" step="1" class="upload-panel__num" />
         </label>
         <van-button size="small" type="primary" @click="fileInput?.click()">{{
           t('upload.select')
