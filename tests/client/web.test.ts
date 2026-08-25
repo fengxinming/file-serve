@@ -28,10 +28,10 @@ let baseUrl: string;
 function findDistWeb(from: string): string {
   let dir = dirname(from);
   for (;;) {
-    const candidate = resolve(dir, 'dist/web');
+    const candidate = resolve(dir, 'dist/app');
     if (existsSync(candidate)) return candidate;
     const parent = dirname(dir);
-    if (parent === dir) throw new Error('找不到 dist/web,请先执行 pnpm build');
+    if (parent === dir) throw new Error('找不到 dist/app,请先执行 pnpm build');
     dir = parent;
   }
 }

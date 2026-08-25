@@ -1,63 +1,65 @@
 # file-serve
 
-局域网文件上传下载服务。在任意目录执行 `file-serve`，即以当前目录为根目录提供文件浏览、下载、上传服务，支持断点续传（tus 协议）。
+## [中文文档](README_zh-CN.md)
 
-## 安装
+A local network file upload and download service. Run `file-serve` in any directory to serve that directory as the root for file browsing, downloading, and uploading. Supports resumable uploads (tus protocol).
+
+## Installation
 
 ```bash
 npm install -g file-serve
 ```
 
-要求 Node.js >= 20.19.0。
+Requires Node.js >= 20.19.0.
 
-## 使用
+## Usage
 
 ```bash
-# 以当前目录为根目录启动
+# Start with current directory as root
 file-serve
 
-# 指定端口并自动打开浏览器
+# Specify port and automatically open browser
 file-serve -p 8080 -o
 
-# 局域网分享（监听全部网卡，显示局域网地址）
+# Share on local network (listen on all interfaces, show local network addresses)
 file-serve -l 0.0.0.0
 
-# 指定服务根目录
+# Specify server root directory
 file-serve /path/to/dir
 ```
 
-启动后在浏览器访问 `http://localhost:3000` 即可使用。
+After starting, visit `http://localhost:3000` in your browser to use.
 
-## 命令行参数
+## Command Line Options
 
-| 参数 | 说明 | 默认值 |
+| Option | Description | Default |
 | --- | --- | --- |
-| `-p, --port <port>` | 端口号，被占用时自动向上寻找空闲端口（最多 10 次） | `3000` |
-| `-l, --listen <listen>` | 监听地址，支持 `tcp://0.0.0.0:8080` 格式 | `0.0.0.0` |
-| `-o, --open` | 启动后自动打开浏览器 | `false` |
-| `-d, --debug` | 调试模式（输出详细日志） | `false` |
-| `-C, --cors` | 启用 CORS | `true` |
-| `-c, --compress` | 启用 gzip 压缩（仅对文本文件生效） | `false` |
-| `[path]` | 指定服务根目录（不指定则用当前目录） | `.` |
+| `-p, --port <port>` | Port number. Automatically searches for the next available port if occupied (up to 10 attempts) | `3000` |
+| `-l, --listen <listen>` | Listen address. Supports `tcp://0.0.0.0:8080` format | `0.0.0.0` |
+| `-o, --open` | Automatically open browser after starting | `false` |
+| `-d, --debug` | Debug mode (output detailed logs) | `false` |
+| `-C, --cors` | Enable CORS | `true` |
+| `-c, --compress` | Enable gzip compression (only for text files) | `false` |
+| `[path]` | Specify server root directory (defaults to current directory) | `.` |
 
-## 功能
+## Features
 
-- **文件浏览**：显示当前目录下的文件和文件夹，第一项为 `..` 返回上一层，点击文件夹进入，点击文件直接下载。
-- **批量下载**：勾选文件/文件夹后打包为 ZIP 下载（文件夹递归包含内部所有文件）。
-- **上传**：支持多文件选择、断点续传（tus 协议）、暂停/继续/取消、并发上传（默认 5 并发）、独立进度条、上传完成自动刷新文件列表。
+- **File Browsing**: Display files and folders in the current directory. The first item is `..` to go up one level. Click folders to enter them, click files to download directly.
+- **Batch Download**: Select files/folders and download them as a ZIP archive (folders recursively include all internal files).
+- **Upload**: Supports multi-file selection, resumable uploads (tus protocol), pause/resume/cancel, concurrent uploads (default: 5 concurrent), individual progress bars, and automatic refresh of file list after upload completion.
 
-## 开发
+## Development
 
 ```bash
-pnpm install
-pnpm dev          # 前端开发服务器（Vite）
-pnpm build        # 构建前端 + 后端到 dist/
-node dist/file-serve.js -p 3000   # 运行构建产物
+npm run deps
+npm run dev          # Frontend development server (Vite)
+npm run build        # Build frontend + backend to dist/
+npm run preview -p 3000   # Run build output
 ```
 
-## 技术栈
+## Tech Stack
 
-Fastify · Vite · Vue 3 · Vant · tus 协议（@tus/server + tus-js-client）· archiver · cac
+Fastify · Vite · Vue 3 · Vant · tus protocol (@tus/server + tus-js-client) · archiver · cac
 
 ## License
 
