@@ -1,0 +1,17 @@
+<!doctype html>
+<html lang="en">
+  <!--
+    Vite 8(rolldown)要求 HTML 入口必须是真实文件,本文件作为 index.pug 的入口壳:
+    vite-plugin-view 通过 transformIndexHtml 把 index.pug 编译结果整体覆盖本壳。
+    页面模板请修改 index.pug;lang 作为 pug 模板变量在编译时注入。
+    若删除本文件,插件会在构建时自动生成极简壳。
+  -->
+  <head>
+    <meta charset="UTF-8" />
+    <title>file-serve</title>
+  </head>
+  <body>
+    <div id="app"></div>
+    <script type="module" src="/src/app/main.ts"></script>
+  </body>
+</html>

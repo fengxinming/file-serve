@@ -20,5 +20,14 @@
     "erasableSyntaxOnly": true,
     "noFallthroughCasesInSwitch": true
   },
-  "include": ["vite.config.ts", "vite.config.server.ts", "file-serve.ts", "server/**/*.ts", "types/**/*.d.ts"]
+  "include": [
+    "vite.config.ts",
+    "vite.config.server.ts",
+    "src/file-serve.ts",
+    "src/server/**/*.ts",
+    "src/shared/**/*.ts",
+    "tests/server/**/*.ts",
+    "types/**/*.d.ts",
+    "vite-plugins/**/*.ts"
+  ]
 }

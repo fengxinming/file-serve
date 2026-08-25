@@ -52,7 +52,6 @@ file-serve /path/to/dir
 pnpm install
 pnpm dev          # 前端开发服务器（Vite）
 pnpm build        # 构建前端 + 后端到 dist/
-pnpm build:server # 仅构建后端
 node dist/file-serve.js -p 3000   # 运行构建产物
 ```
 

@@ -1,0 +1,17 @@
+{
+  "$schema": "https://raw.githubusercontent.com/oxc-project/oxc/main/npm/oxlint/configuration_schema.json",
+  "plugins": ["vue", "unicorn", "typescript", "import"],
+  "categories": {
+    "correctness": "error",
+    "perf": "warn"
+  },
+  "rules": {
+    "no-console": ["warn", { "allow": ["warn", "error", "info"]}]
+  },
+  "ignorePatterns": [
+    "dist/**",
+    "node_modules/**",
+    "app/auto-imports.d.ts",
+    "app/components.d.ts"
+  ]
+}

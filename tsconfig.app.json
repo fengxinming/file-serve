@@ -11,5 +11,12 @@
     "erasableSyntaxOnly": true,
     "noFallthroughCasesInSwitch": true
   },
-  "include": ["app/**/*.ts", "app/**/*.tsx", "app/**/*.vue"]
+  "include": [
+    "src/app/**/*.ts", 
+    "src/app/**/*.tsx", 
+    "src/app/**/*.vue",
+    "src/shared/**/*.ts",
+    "tests/**/*.ts", 
+    "types/**/*.d.ts"
+  ]
 }
