@@ -147,3 +147,5 @@ vite.config.ts.timestamp-*
 
 # NutUI 按需引入自动生成的组件类型声明
 app/components.d.ts
+
+.workbuddy/
