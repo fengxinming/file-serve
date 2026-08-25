@@ -65,7 +65,7 @@
     "unplugin-vue-components": "^32.1.0",
     "vite": "^8.2.0",
     "vite-plugin-external": "^8.0.2",
-    "vite-plugin-view": "^8.0.2",
+    "vite-plugin-view": "^8.1.0",
     "vitest": "^4.1.10",
     "vue-tsc": "^3.3.8"
   }

@@ -112,8 +112,8 @@ importers:
         specifier: ^8.0.2
         version: 8.0.2
       vite-plugin-view:
-        specifier: ^8.0.2
-        version: 8.0.2(pug@3.0.4)
+        specifier: ^8.1.0
+        version: 8.1.0(pug@3.0.4)
       vitest:
         specifier: ^4.1.10
         version: 4.1.11(@types/node@24.13.3)(happy-dom@20.11.6)(vite@8.2.2(@types/node@24.13.3)(esbuild@0.28.2)(tsx@4.23.12))
@@ -2369,8 +2369,8 @@ packages:
     resolution: {integrity: sha512-F458aeoXUCQ3MT618TuVV5z84cxLL7fnhMPlOFamTahOggbCv+GeK3lhoIcT8QrJ2lQjJ4xxK9veYEFT5ypNuA==}
     engines: {node: ^20.19.0 || >=22.12.0, vite: '>=8.0.0'}
 
-  vite-plugin-view@8.0.2:
-    resolution: {integrity: sha512-NY4ceDx/L+P504j+NK0ZRGidfGciS9nLVrSShaL4t+dkEFhxxsKPsB7+BunxMCACZ9BcoWeRTDQeYu6+6GYQeg==}
+  vite-plugin-view@8.1.0:
+    resolution: {integrity: sha512-+PGPOaICZz99OkeARGZ60cDNXED+9WXdfj+NxrfGUUvLf5A66snOJCvHI0AUVPlMeSVdRrYactBnO3tJyASybQ==}
     engines: {node: ^20.19.0 || >=22.12.0, vite: '>=8.0.0'}
 
   vite@8.2.2:
@@ -4499,7 +4499,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  vite-plugin-view@8.0.2(pug@3.0.4):
+  vite-plugin-view@8.1.0(pug@3.0.4):
     dependencies:
       '@types/consolidate': 0.14.4
       consolidate: 1.0.4(pug@3.0.4)
