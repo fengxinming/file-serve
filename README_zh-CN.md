@@ -40,6 +40,7 @@ lansrv /path/to/dir
 | `-d, --debug` | 调试模式（输出详细日志） | `false` |
 | `-C, --cors` | 启用 CORS | `true` |
 | `-c, --compress` | 启用 gzip 压缩（仅对文本文件生效） | `false` |
+| `-L, --lang` | 网页界面语言（`'en'`、`'zh-CN'`） | `'zh-CN'` |
 | `[path]` | 指定服务根目录（不指定则用当前目录） | `.` |
 
 ## 功能
