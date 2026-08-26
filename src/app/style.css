@@ -1,0 +1,70 @@
+:root {
+  --fs-primary: #fa2c19;
+  --fs-primary-light: rgba(250, 44, 25, 0.1);
+  --fs-text: #1f2329;
+  --fs-text-secondary: #8a919f;
+  --fs-bg: #f7f8fa;
+  --fs-surface: #ffffff;
+  --fs-border: #e5e6eb;
+  --fs-hover: #f2f3f5;
+  --fs-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+
+  /* Vant 主题变量:主色与页面统一,组件库样式走 Vant 规范 */
+  --van-primary-color: var(--fs-primary);
+  --van-danger-color: #fa2c19;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --fs-text: #e5e6eb;
+    --fs-text-secondary: #85899c;
+    --fs-bg: #17181c;
+    --fs-surface: #232428;
+    --fs-border: #36373d;
+    --fs-hover: #2b2d33;
+    --fs-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+
+    /* Vant 深色适配:函数式弹窗挂载在 body 下,不受 ConfigProvider 约束,这里手动覆盖 */
+    --van-background: #17181c;
+    --van-background-2: #232428;
+    --van-background-3: #2b2d33;
+    --van-text-color: #e5e6eb;
+    --van-text-color-2: #85899c;
+    --van-border-color: #36373d;
+    --van-active-color: #2b2d33;
+    --van-popup-background: #232428;
+    --van-dialog-background: #232428;
+    --van-progress-background: #36373d;
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  /* rem 根字号:375px 视口下 1rem = 16px(与设计稿 1:1),随视口线性放大,562px 以上封顶 24px(1.5x)。
+     本规则经 postcss-pxtorem 的 selectorBlackList(/^html$/) 豁免转换,避免 rem 循环依赖 */
+  font-size: clamp(16px, calc(100vw / 375 * 16px), 24px);
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue',
+    Arial, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--fs-text);
+  background: var(--fs-bg);
+  -webkit-font-smoothing: antialiased;
+}
+
+#app {
+  min-height: 100vh;
+  min-height: 100dvh;
+}

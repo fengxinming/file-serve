@@ -1,0 +1,5 @@
+allowBuilds:
+  esbuild: true # set this to true or false
+minimumReleaseAgeExclude:
+  - vite-plugin-external@8.0.1 || 8.0.2
+  - vite-plugin-view@8.0.1 || 8.0.2

@@ -1,0 +1,24 @@
+{
+  "oxc.enable": true,
+  "oxc.enable.oxlint": true,
+  "oxc.enable.oxfmt": true,
+  "oxc.lint.run": "onType",
+  "oxc.requireConfig": false,
+  "oxc.fixKind": "safe_fix",
+  "oxc.unusedDisableDirectives": "warn",
+  "oxc.configPath": ".oxlintrc.json",
+  "oxc.fmt.configPath": ".oxfmtrc.json",
+  "editor.defaultFormatter": "oxc.oxc-vscode",
+  "[vue]": {
+    "editor.formatOnSave": true,
+    "editor.codeActionsOnSave": {
+      "source.fixAll.oxc": "always"
+    }
+  },
+  "[typescript]": {
+    "editor.formatOnSave": true,
+    "editor.codeActionsOnSave": {
+      "source.fixAll.oxc": "always"
+    }
+  }
+}

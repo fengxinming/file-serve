@@ -1,0 +1,19 @@
+- const currentLang = typeof lang !== 'undefined' ? lang : 'zh-CN'
+- const scriptSrc = typeof entryJs !== 'undefined' ? entryJs : './src/app/main.ts'
+- const cssHref = typeof entryCss !== 'undefined' ? entryCss : ''
+doctype html
+html(lang=currentLang)
+  head
+    meta(charset='UTF-8')
+    link(rel='icon' type='image/svg+xml' href='/favicon.svg')
+    meta(name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, viewport-fit=cover')
+    meta(name='apple-mobile-web-app-capable' content='yes')
+    meta(name='theme-color' content='#fa2c19')
+    title file-serve
+    if cssHref
+      link(rel='stylesheet' href=cssHref)
+    script.
+      window.__FS_LANG__ = !{JSON.stringify(currentLang)};
+  body
+    div#app
+    script(type='module' crossorigin src=scriptSrc)
