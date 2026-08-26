@@ -1,6 +1,6 @@
 # lansrv
 
-## [中文文档](README_zh-CN.md)
+## [中文文档](https://github.com/fengxinming/file-serve/blob/main/README_zh-CN.md)
 
 A local network file upload and download service. Run `lansrv` in any directory to serve that directory as the root for file browsing, downloading, and uploading. Supports resumable uploads (tus protocol).
 
