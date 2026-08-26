@@ -1,13 +1,13 @@
-# file-serve
+# lansrv
 
 ## [English Documentation](README.md)
 
-局域网文件上传下载服务。在任意目录执行 `file-serve`，即以当前目录为根目录提供文件浏览、下载、上传服务，支持断点续传（tus 协议）。
+局域网文件上传下载服务。在任意目录执行 `lansrv`，即以当前目录为根目录提供文件浏览、下载、上传服务，支持断点续传（tus 协议）。
 
 ## 安装
 
 ```bash
-npm install -g file-serve
+npm install -g lansrv
 ```
 
 要求 Node.js >= 20.19.0。
@@ -16,16 +16,16 @@ npm install -g file-serve
 
 ```bash
 # 以当前目录为根目录启动
-file-serve
+lansrv
 
 # 指定端口并自动打开浏览器
-file-serve -p 8080 -o
+lansrv -p 8080 -o
 
 # 局域网分享（监听全部网卡，显示局域网地址）
-file-serve -l 0.0.0.0
+lansrv -l 0.0.0.0
 
 # 指定服务根目录
-file-serve /path/to/dir
+lansrv /path/to/dir
 ```
 
 启动后在浏览器访问 `http://localhost:3000` 即可使用。

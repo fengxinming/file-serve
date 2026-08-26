@@ -30,7 +30,7 @@ export default defineConfig({
           acc[file.slice(0, -3)] = join(__dirname, file);
           return acc;
         },
-        { 'file-serve': join(__dirname, 'src/file-serve.ts') },
+        { 'lansrv': join(__dirname, 'src/lansrv.ts') },
       ),
       output: {
         dir: 'dist',

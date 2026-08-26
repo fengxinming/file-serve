@@ -1,10 +1,10 @@
 {
-  "name": "file-serve",
+  "name": "lansrv",
   "version": "1.0.0",
   "description": "局域网文件上传下载服务，支持断点续传（tus 协议）",
   "type": "module",
   "bin": {
-    "file-serve": "dist/file-serve.mjs"
+    "lansrv": "dist/lansrv.mjs"
   },
   "files": [
     "dist",
@@ -25,7 +25,7 @@
     "test:watch": "vitest",
     "build:web": "vue-tsc -b && vite build",
     "build:server": "vite build -c vite.config.server.ts",
-    "preview": "node dist/file-serve.mjs",
+    "preview": "node dist/lansrv.mjs",
     "prepublishOnly": "npm run build"
   },
   "dependencies": {

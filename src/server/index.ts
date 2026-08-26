@@ -1,5 +1,5 @@
 /**
- * file-serve 服务端:Fastify 应用工厂与启动入口。
+ * lansrv 服务端:Fastify 应用工厂与启动入口。
  *
  * - createServer:组装路由(文件浏览 / 下载 / 批量下载 / tus 上传);当传入 staticDir 时额外注册
  *   生产端的页面与静态资源:用 @fastify/view 加载 pug 模板,reply.view() 传入 lang / 构建入口路径

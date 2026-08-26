@@ -1,13 +1,13 @@
-# file-serve
+# lansrv
 
 ## [中文文档](README_zh-CN.md)
 
-A local network file upload and download service. Run `file-serve` in any directory to serve that directory as the root for file browsing, downloading, and uploading. Supports resumable uploads (tus protocol).
+A local network file upload and download service. Run `lansrv` in any directory to serve that directory as the root for file browsing, downloading, and uploading. Supports resumable uploads (tus protocol).
 
 ## Installation
 
 ```bash
-npm install -g file-serve
+npm install -g lansrv
 ```
 
 Requires Node.js >= 20.19.0.
@@ -16,16 +16,16 @@ Requires Node.js >= 20.19.0.
 
 ```bash
 # Start with current directory as root
-file-serve
+lansrv
 
 # Specify port and automatically open browser
-file-serve -p 8080 -o
+lansrv -p 8080 -o
 
 # Share on local network (listen on all interfaces, show local network addresses)
-file-serve -l 0.0.0.0
+lansrv -l 0.0.0.0
 
 # Specify server root directory
-file-serve /path/to/dir
+lansrv /path/to/dir
 ```
 
 After starting, visit `http://localhost:3000` in your browser to use.

@@ -23,7 +23,7 @@
   "include": [
     "vite.config.ts",
     "vite.config.server.ts",
-    "src/file-serve.ts",
+    "src/lansrv.ts",
     "src/server/**/*.ts",
     "src/shared/**/*.ts",
     "tests/server/**/*.ts",

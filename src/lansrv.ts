@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * file-serve CLI 入口。
+ * lansrv CLI 入口。
  *
  * 解析命令行参数(端口、监听地址、语言等),启动服务并加载 dist/web 构建产物。
  * 界面语言由运行参数 --lang 决定,服务端启动时编译 index.pug 并注入,不随构建产物预编译。
@@ -15,7 +15,7 @@ import { startServer } from './server/index.ts';
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const pkg = JSON.parse(readFileSync(resolve(__dirname, '../package.json'), 'utf-8'));
 
-const cli = cac('file-serve');
+const cli = cac('lansrv');
 
 cli
   .option('-p, --port <port>', '端口号', { default: 3000 })

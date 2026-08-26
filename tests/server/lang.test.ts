@@ -38,9 +38,9 @@ describe('lang 工具', () => {
   it('t 返回对应语言文案', () => {
     // 切换语言后 t 直接取当前语言,无需再显式传参
     setLang('zh-CN');
-    expect(t('log.title')).toBe('file-serve 已启动');
+    expect(t('log.title')).toBe('lansrv 已启动');
     setLang('en');
-    expect(t('log.title')).toBe('file-serve started');
+    expect(t('log.title')).toBe('lansrv started');
   });
 
   it('t 未知 key 原样返回', () => {

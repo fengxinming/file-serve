@@ -141,7 +141,7 @@ onMounted(() => loadFiles('.'));
   <van-config-provider :theme="isDark ? 'dark' : 'light'" tag="div">
     <div class="browser">
       <header class="browser__header">
-        <h1 class="browser__title">file-serve</h1>
+        <h1 class="browser__title">lansrv</h1>
         <div class="browser__path" :title="currentPath">{{ currentPath }}</div>
       </header>
 
@@ -160,12 +160,8 @@ onMounted(() => loadFiles('.'));
 
           <div v-for="item in items" :key="item.path" class="file-row" @click="openItem(item)">
             <span class="file-row__checkbox" @click.stop>
-              <input
-                type="checkbox"
-                :checked="selected.has(item.path)"
-                class="file-row__check"
-                @change="toggleSelect(item)"
-              />
+              <input type="checkbox" :checked="selected.has(item.path)" class="file-row__check"
+                @change="toggleSelect(item)" />
             </span>
             <span class="file-row__icon">{{ item.isDirectory ? '📁' : '📄' }}</span>
             <span class="file-row__name" :title="item.name">{{ item.name }}</span>
@@ -182,13 +178,7 @@ onMounted(() => loadFiles('.'));
       <footer class="browser__footer">
         <span class="browser__selected">{{ t('selected.count', { n: selectedCount }) }}</span>
         <div class="browser__actions">
-          <van-button
-            size="small"
-            type="primary"
-            plain
-            :disabled="!canDownload"
-            @click="downloadBatch"
-          >
+          <van-button size="small" type="primary" plain :disabled="!canDownload" @click="downloadBatch">
             {{ t('action.download') }}
           </van-button>
           <van-button size="small" type="primary" @click="showUpload = true">

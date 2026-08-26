@@ -2,7 +2,7 @@
 /**
  * 构建产物级页面测试:服务启动后加载完整页面,校验真实渲染结果。
  *
- * 流程:启动真实 file-serve 服务(含真实文件)→ 请求完整页面 HTML →
+ * 流程:启动真实 lansrv 服务(含真实文件)→ 请求完整页面 HTML →
  * 注入 DOM 环境并手动执行 dist/web 打包 JS 让 Vue 真实挂载 →
  * 页面真实请求 /api/files → 断言文件列表有记录、下排有按钮。
  * 依赖 pnpm test 的 pretest 先构建最新产物(见 package.json)。
@@ -38,9 +38,9 @@ function findDistWeb(from: string): string {
 
 beforeAll(async () => {
   // 准备一个含真实文件的根目录作为服务数据源
-  root = mkdtempSync(join(tmpdir(), 'file-serve-web-'));
+  root = mkdtempSync(join(tmpdir(), 'lansrv-web-'));
   mkdirSync(join(root, 'docs'));
-  writeFileSync(join(root, 'hello.txt'), 'hello file-serve');
+  writeFileSync(join(root, 'hello.txt'), 'hello lansrv');
   writeFileSync(join(root, 'docs/readme.md'), '# readme');
 
   // 启动服务:staticDir 指向构建产物,提供完整页面;同时提供 /api 接口
