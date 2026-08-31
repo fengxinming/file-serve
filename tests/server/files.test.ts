@@ -1,5 +1,6 @@
 import { afterAll, beforeAll, describe, expect, it } from 'vitest';
 import Fastify from 'fastify';
+import fastifyStatic from '@fastify/static';
 import { mkdtempSync, rmSync, writeFileSync, mkdirSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
@@ -14,9 +15,13 @@ beforeAll(async () => {
   writeFileSync(join(root, 'b.log'), 'log content');
   mkdirSync(join(root, 'sub'));
   writeFileSync(join(root, 'sub', 'c.txt'), 'world');
+  // 中文名文件:验证 Content-Disposition 非 ASCII 编码后下载不 500(回归 bug)
+  writeFileSync(join(root, '歌曲.mp4'), 'chinese name content');
 
   app = Fastify();
-  await setupFileRoutes(app, { root, compress: false });
+  // 提供 reply.download 装饰(serve:false 不抢路由),与 createServer 中 dev 场景的注册一致
+  await app.register(fastifyStatic, { root, decorateReply: true, serve: false });
+  await setupFileRoutes(app, { root });
   await app.ready();
 });
 
@@ -77,6 +82,14 @@ describe('GET /api/download/*', () => {
     const res = await app.inject({ method: 'GET', url: '/api/download/sub' });
     expect(res.statusCode).toBe(400);
     expect(res.json()).toEqual({ code: 'file.isDirectory' });
+  });
+
+  it('中文文件名下载返回 200 且内容完整(RFC 5987 编码)', async () => {
+    const res = await app.inject({ method: 'GET', url: '/api/download/' + encodeURIComponent('歌曲.mp4') });
+    expect(res.statusCode).toBe(200);
+    expect(res.body).toBe('chinese name content');
+    // 中文名应以 filename*=UTF-8'' 形式编码,而非裸塞非 ASCII 进 header
+    expect(res.headers['content-disposition']).toContain("filename*=UTF-8''");
   });
 });
 

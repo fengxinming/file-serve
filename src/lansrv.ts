@@ -18,6 +18,7 @@ const pkg = JSON.parse(readFileSync(resolve(__dirname, '../package.json'), 'utf-
 const cli = cac('lansrv');
 
 cli
+  .command('[dir]', '启动服务器')
   .option('-p, --port <port>', '端口号', { default: 3000 })
   .option('-l, --listen <listen>', '监听地址', { default: '0.0.0.0' })
   .option('-o, --open', '自动打开浏览器', { default: false })
@@ -25,25 +26,22 @@ cli
   .option('-C, --cors', '启用 CORS', { default: true })
   .option('-c, --compress', '启用 gzip 压缩', { default: false })
   .option('-L, --lang <lang>', `网页界面语言: ${LANGS.join(' | ')}`, { default: LANGS[0] })
-  .help()
-  .version(pkg.version);
+  .action((root, options) => {
+    startServer(
+      {
+        port: options.port,
+        listen: options.listen,
+        open: options.open,
+        debug: options.debug,
+        cors: options.cors,
+        compress: options.compress,
+        lang: options.lang,
+        root,
+      },
+      join(__dirname, 'app'),
+    );
+  });
 
-cli.parse();
-
-// 解析 CLI 参数:根目录为第一个位置参数,缺省取当前工作目录
-const { options } = cli;
-const root = cli.args[0] || process.cwd();
-
-startServer(
-  {
-    port: options.port,
-    listen: options.listen,
-    open: options.open,
-    debug: options.debug,
-    cors: options.cors,
-    compress: options.compress,
-    lang: options.lang,
-    root,
-  },
-  join(__dirname, 'app'),
-);
+cli.help()
+  .version(pkg.version)
+  .parse();
