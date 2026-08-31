@@ -14,6 +14,7 @@ import fastify from 'fastify';
 import fastifyCors from '@fastify/cors';
 import fastifyStatic from '@fastify/static';
 import fastifyView from '@fastify/view';
+import {fastifyCompress} from '@fastify/compress';
 import pug from 'pug';
 import { resolve } from 'node:path';
 import { existsSync, mkdirSync } from 'node:fs';
@@ -63,6 +64,25 @@ export async function createServer(options: CreateServerOptions = {}, staticDir?
     });
   }
 
+  // 下载 / 静态资源 gzip 压缩:仅当 --compress 开启时注册插件(global:true,自动对可压缩响应 gzip,
+  // 由插件按 Content-Type + Accept-Encoding 决策,文本/二进制被压,媒体(mp4/zip/pdf 等)天然跳过)。
+  // 是否压缩完全由本开关决定——不注册插件即完全不压,下载路由无需再判断。注册须在 @fastify/static 之前
+  // (文档要求:带 global hook 的 compress 必须先于 static),下方两段 static 注册均在本行之后,顺序合规。
+  if (compress) {
+    await server.register(fastifyCompress, {
+      global: true,
+      threshold: 1024,
+      zlibOptions: { level: 6 }
+    });
+  }
+
+  // reply.download 装饰(来自 @fastify/static):生产模式由下方 if(staticDir) 的 static 注册提供
+  // (decorateReply:true);dev / 测试等不注册 static 的场景单独注册一次 serve:false 仅取其 reply.download
+  // 装饰,不抢任何路由。置于 compress 之后,满足「compress 先于 static 注册」的文档要求。
+  if (!staticDir) {
+    await server.register(fastifyStatic, { root, decorateReply: true, serve: false });
+  }
+
   // 首页渲染与静态资源服务(仅生产模式 / CLI 启动时提供;开发模式由 @fastify/vite 接管)
   if (staticDir) {
     if (!existsSync(staticDir)) {
@@ -91,16 +111,18 @@ export async function createServer(options: CreateServerOptions = {}, staticDir?
 
     // 其余静态资源(assets/js/css/svg 等)由 @fastify/static 提供;
     // index:false 使 / 不被 static 的默认 index 逻辑接管,交由上方自定义路由渲染
+    // 生产 SPA 资源服务;decorateReply:true 让 reply.download 可用(下载路由直接调用)。
+    // dev 等不注册 static 的场景已在上方用 serve:false 单独装饰过,二者只装饰一次、不冲突。
     await server.register(fastifyStatic, {
       root: staticDir,
       prefix: '/',
-      decorateReply: false,
+      decorateReply: true,
       index: false,
     });
   }
 
   // 文件路由与上传路由
-  await setupFileRoutes(server, { root, compress });
+  await setupFileRoutes(server, { root });
   await setupUploadRoutes(server, { uploadDir, root });
 
   return server;

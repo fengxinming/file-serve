@@ -163,6 +163,10 @@ function resumeTask(task: UploadTask) {
   if (task.status !== 'paused') {
     return;
   }
+  if (activeCount >= concurrency.value) {
+    return;  // 尊重并发上限,超限保持 paused
+  }
+
   activeCount += 1;
   task.status = 'uploading';
   task.upload?.start();
@@ -388,7 +392,7 @@ function onSecondaryAction(task: UploadTask) {
               </van-button>
               <van-button size="mini" plain @click="onSecondaryAction(task)">{{
                 secondaryActionText(task)
-              }}</van-button>
+                }}</van-button>
             </div>
           </div>
         </div>
@@ -401,22 +405,22 @@ function onSecondaryAction(task: UploadTask) {
         </label>
         <van-button size="small" type="primary" @click="fileInput?.click()">{{
           t('upload.select')
-        }}</van-button>
+          }}</van-button>
       </div>
 
       <div class="upload-panel__footer">
         <van-button size="small" :disabled="!canPause" @click="confirmPauseAll">{{
           t('upload.pauseAll')
-        }}</van-button>
+          }}</van-button>
         <van-button size="small" :disabled="!canCancel" @click="confirmCancelAll">{{
           t('upload.cancelAll')
-        }}</van-button>
+          }}</van-button>
         <van-button size="small" :disabled="!canClear" @click="clearList">{{
           t('upload.clearList')
-        }}</van-button>
+          }}</van-button>
         <van-button size="small" type="primary" :disabled="!canStart" @click="startAll">{{
           t('upload.startAll')
-        }}</van-button>
+          }}</van-button>
       </div>
     </div>
   </van-popup>
