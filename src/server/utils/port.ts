@@ -34,7 +34,9 @@ export async function findAvailablePort(startPort: number, maxAttempts = 10): Pr
   for (let i = 0; i < maxAttempts; i++) {
     // 必须串行探测:找到第一个可用端口即返回,不可并行占用端口
     // oxlint-disable-next-line unicorn/no-await-in-loop
-    if (await isPortAvailable(port)) return port;
+    if (await isPortAvailable(port)) {
+      return port;
+    }
     port += 1;
   }
   throw new Error(`无法找到可用端口（已尝试 ${maxAttempts} 次）`);

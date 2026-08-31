@@ -1,6 +1,6 @@
 {
   "name": "lansrv",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "A local network file upload and download service. Run `lansrv` in any directory to serve that directory as the root for file browsing, downloading, and uploading. Supports resumable uploads (tus protocol).",
   "keywords": [
     "tus",

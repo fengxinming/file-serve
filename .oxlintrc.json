@@ -6,7 +6,8 @@
     "perf": "warn"
   },
   "rules": {
-    "no-console": ["warn", { "allow": ["warn", "error", "info"]}]
+    "no-console": ["warn", { "allow": ["warn", "error", "info"]}],
+    "curly": ["error", "all"]
   },
   "ignorePatterns": [
     "dist/**",
