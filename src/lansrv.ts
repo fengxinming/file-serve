@@ -24,7 +24,7 @@ cli
   .option('-d, --debug', '调试模式', { default: false })
   .option('-C, --cors', '启用 CORS', { default: true })
   .option('-c, --compress', '启用 gzip 压缩', { default: false })
-  .option('-L, --lang <lang>', `界面语言: ${LANGS.join(' | ')}`, { default: LANGS[0] })
+  .option('-L, --lang <lang>', `网页界面语言: ${LANGS.join(' | ')}`, { default: LANGS[0] })
   .help()
   .version(pkg.version);
 

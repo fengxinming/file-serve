@@ -131,10 +131,12 @@ export async function startServer(options: ServerOptions, staticDir?: string): P
   console.info(`📍 ${t('log.root')}: ${options.root ?? process.cwd()}`);
   console.info(`🌐 ${t('log.local')}: ${localUrl}`);
   console.info(`📱 ${t('log.lan')}: ${networkUrl}`);
-  if (options.debug) console.info(`🐛 ${t('log.debug')}`);
+  if (options.debug) {
+    console.info(`🐛 ${t('log.debug')}`);
+  }
 
   // 自动打开默认浏览器
-  if (shouldOpen) await open(localUrl);
+  if (shouldOpen) {await open(localUrl);}
 
   return server;
 }

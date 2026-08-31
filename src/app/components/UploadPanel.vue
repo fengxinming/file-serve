@@ -49,10 +49,13 @@ const canCancel = computed(() => tasks.value.some((t) => t.status !== 'completed
 
 /** 并发调度:有空闲额度时取出一个等待中的任务启动 */
 function pump() {
-  if (activeCount >= concurrency.value) return;
+  if (activeCount >= concurrency.value) {
+    return;
+  }
   const next = tasks.value.find((t) => t.status === 'waiting');
-  if (!next) return;
-  activeCount += 1;
+  if (!next) {
+    return;
+  }
   startTask(next);
 }
 
@@ -61,8 +64,12 @@ function pump() {
  * @param task 目标任务,仅 waiting / error 状态可启动
  */
 function startTask(task: UploadTask) {
-  if (task.status !== 'waiting' && task.status !== 'error') return;
-  if (activeCount >= concurrency.value) return;
+  if (task.status !== 'waiting' && task.status !== 'error') {
+    return;
+  }
+  if (activeCount >= concurrency.value) {
+    return;
+  }
   activeCount += 1;
   task.status = 'uploading';
   task.error = '';
@@ -122,7 +129,9 @@ function onFilesSelected(e: Event) {
 /** 全部上传:先恢复所有暂停任务,再调度等待中的任务 */
 function startAll() {
   for (const task of tasks.value) {
-    if (task.status === 'paused') resumeTask(task);
+    if (task.status === 'paused') {
+      resumeTask(task);
+    }
   }
   pump();
 }
@@ -132,13 +141,16 @@ function startAll() {
  * @param task 目标任务,仅 uploading 状态可暂停
  */
 async function pauseTask(task: UploadTask) {
-  if (task.status !== 'uploading') return;
+  if (task.status !== 'uploading') {
+    return;
+  }
   task.status = 'paused';
-  activeCount -= 1;
   try {
     await task.upload?.abort();
   } catch {
     /* 忽略中止错误 */
+  } finally {
+    activeCount -= 1;
   }
   pump();
 }
@@ -148,7 +160,9 @@ async function pauseTask(task: UploadTask) {
  * @param task 目标任务,仅 paused 状态可恢复
  */
 function resumeTask(task: UploadTask) {
-  if (task.status !== 'paused') return;
+  if (task.status !== 'paused') {
+    return;
+  }
   activeCount += 1;
   task.status = 'uploading';
   task.upload?.start();
@@ -160,7 +174,9 @@ function resumeTask(task: UploadTask) {
  */
 async function cancelTask(task: UploadTask) {
   const idx = tasks.value.indexOf(task);
-  if (idx < 0) return;
+  if (idx < 0) {
+    return;
+  }
   const wasUploading = task.status === 'uploading';
   if (task.upload?.url) {
     // 已创建上传:中止并删除服务端已上传分片
@@ -176,7 +192,9 @@ async function cancelTask(task: UploadTask) {
       /* 忽略 */
     }
   }
-  if (wasUploading) activeCount -= 1;
+  if (wasUploading) {
+    activeCount -= 1;
+  }
   tasks.value.splice(idx, 1);
   pump();
 }
@@ -230,7 +248,7 @@ function clearList() {
  */
 function clearTask(task: UploadTask) {
   const idx = tasks.value.indexOf(task);
-  if (idx >= 0) tasks.value.splice(idx, 1);
+  if (idx >= 0) { tasks.value.splice(idx, 1); }
 }
 
 /** 关闭按钮回调:存在进行中任务时先弹确认框,避免误关导致上传中断 */

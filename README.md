@@ -40,6 +40,7 @@ After starting, visit `http://localhost:3000` in your browser to use.
 | `-d, --debug` | Debug mode (output detailed logs) | `false` |
 | `-C, --cors` | Enable CORS | `true` |
 | `-c, --compress` | Enable gzip compression (only for text files) | `false` |
+| `-L, --lang` | Set language（`'en'`、`'zh-CN'`） | `'en'` |
 | `[path]` | Specify server root directory (defaults to current directory) | `.` |
 
 ## Features

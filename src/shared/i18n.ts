@@ -9,7 +9,7 @@
  */
 
 /** 支持的语言列表:新增语言只需在此追加一项,并在各端 locales/ 下补充对应文案 */
-export const LANGS = ['zh-CN', 'en'] as const;
+export const LANGS = ['en', 'zh-CN'];
 
 /** 界面语言,由 LANGS 派生,保证单一数据源 */
 export type Lang = (typeof LANGS)[number];

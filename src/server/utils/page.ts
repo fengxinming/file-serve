@@ -37,9 +37,15 @@ export function resolveEntryAssets(staticDir: string): { entryJs: string; entryC
   let css = '';
   if (existsSync(assetsDir)) {
     for (const file of readdirSync(assetsDir)) {
-      if (js && css) break;
-      if (!js && /^index-.*\.js$/.test(file)) js = file;
-      if (!css && /^index-.*\.css$/.test(file)) css = file;
+      if (js && css) {
+        break;
+      }
+      if (!js && /^index-.*\.js$/.test(file)) {
+        js = file;
+      }
+      if (!css && /^index-.*\.css$/.test(file)) {
+        css = file;
+      }
     }
   }
   // 找不到入口 JS 时兜底指向源码入口,便于误删构建产物时给出可读报错而非白屏

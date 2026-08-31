@@ -10,7 +10,7 @@ import { isLang, LANGS, resolveLang, setLang, t } from '../../src/server/utils/l
 
 describe('lang 工具', () => {
   it('LANGS 只含受支持语言', () => {
-    expect(LANGS).toEqual(['zh-CN', 'en']);
+    expect(LANGS).toEqual(['en', 'zh-CN']);
   });
 
   it('isLang 识别受支持语言', () => {
